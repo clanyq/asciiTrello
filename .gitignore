@@ -1,0 +1,7 @@
+db.sqlite3
+.idea/
+node_modules/
+env/
+assets/bundles/
+
+*.pyc
