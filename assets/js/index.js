@@ -2,7 +2,7 @@ var request = require('superagent');
 var React = require('react');
 var ReactDOM = require('react-dom');
 import update from 'immutability-helper';
-//import styles from '../css/base.css';
+import styles from '../css/base.css';
 
 
 var Comment = React.createClass ({
@@ -49,11 +49,13 @@ var Comment = React.createClass ({
       renderNormal: function() {
 
         return (
-           <div>
+        <div>
+
                 <textarea value={this.props.children} readOnly></textarea>
                 <button onClick={this.edit}>Edit</button>
                 <button onClick={this.remove}>Remove</button>
-           </div>
+
+        </div>
         )
      },
 
@@ -149,7 +151,8 @@ var Board = React.createClass({
         render: function(){
 
             return(
-                <div>
+                <div className={styles.box}>
+
                     <button onClick={this.add.bind(null, 'add new')}>Add New</button>
                     <div>
                           {this.state.comments.map(this.eachComment)}

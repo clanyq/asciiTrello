@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^index/', views.main, name='index'),
     url(r'^note/$', views.note_list),
     url(r'^note/(?P<pk>[0-9]+)/$', views.note_detail),
+    url(r'^users/$', views.UserList.as_view()),
+    url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
 
 ]
 

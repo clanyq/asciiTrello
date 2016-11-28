@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from noteapp.models import Note
+from django.contrib.auth.models import User
 
 # class NoteSerializer(serializers.Serializer):
 #     id = serializers.IntegerField(read_only=True)
@@ -23,8 +24,15 @@ from noteapp.models import Note
 class NoteSerializer(serializers.ModelSerializer):
     # id = serializers.IntegerField(read_only=False)
     text = serializers.CharField(required=False, allow_blank=True, max_length=255)
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Note
-        fields = ('id', 'text')
+        fields = ('id', 'text', 'owner')
 
+class UserSerializer(serializers.ModelSerializer):
+    text = serializers.PrimaryKeyRelatedField(many=True, queryset=Note.objects.all())
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'text')
