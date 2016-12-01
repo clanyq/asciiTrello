@@ -30,12 +30,13 @@ var Comment = React.createClass ({
 
 
     save: function(){
-        this.setState({editing: false})
+
         var putUrl = 'http://127.0.0.1:8000/noteapp/note/' + (this.props.index) + '/';
 
         request.put(putUrl).send({id : this.refs.newText.value, text : this.refs.newText.value}).then((response) => {
 
             this.props.updateCommentText(response.body, this.props.arr_id)
+            this.setState({editing: false})
         });
         console.log('Updated note')
     },
